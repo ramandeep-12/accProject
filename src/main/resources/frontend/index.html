@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CardCompare</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">CardCompare</div>
+    <div class="nav-links">
+      <a href="#" onclick="showSection('explore')">Explore</a>
+      <a href="#" onclick="showSection('compare')">Compare</a>
+      <a href="#" onclick="showSection('recommendations')">Recommendations</a>
+      <a href="#" onclick="showSection('history')">History</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>Find Your Perfect Credit Card</h1>
+    <p>Compare credit cards from top Canadian banks, get personalized recommendations, and make informed financial decisions.</p>
+    <button class="btn" onclick="showSection('explore')">Explore Cards</button>
+    <button class="btn" onclick="showSection('recommendations')">Get Recommendations</button>
+  </header>
+
+  <!-- Explore Section -->
+  <section id="explore-section" class="section active">
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search by card name, bank, or benefit..." oninput="fetchCards()" />
+    </div>
+<!-- Add this inside the explore section -->
+<div class="ranking-controls">
+  <button class="btn" onclick="showPageRanking()">Show Page rank</button>
+</div>
+    <div class="frequency-check">
+      <h2>Word Frequency Checker</h2>
+      <input type="text" id="wordInput" placeholder="Enter a word..." />
+      <button class="btn" onclick="checkWordFrequency()">Check Frequency</button>
+      <p id="frequencyResult"></p>
+    </div>
+
+    <div class="cards-container" id="cardsContainer"></div>
+  </section>
+
+  <!-- Compare Section -->
+  <section id="compare-section" class="section">
+    <div class="compare-header">
+      <h2>Compare Credit Cards</h2>
+      <p>Select up to 3 cards to compare side by side</p>
+      <div class="compare-counter">
+        <span id="compareCount">0</span>/3 cards selected
+      </div>
+    </div>
+
+    <div class="compare-controls">
+      <button class="btn" onclick="clearComparison()">Clear All</button>
+      <button class="btn" onclick="showComparison()" id="showCompareBtn" disabled>Compare Selected</button>
+    </div>
+
+    <div class="compare-cards-container" id="compareCardsContainer"></div>
+
+    <div class="comparison-table" id="comparisonTable" style="display: none;">
+      <h3>Comparison Results</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="card-header" id="card1Header"></th>
+              <th class="card-header" id="card2Header"></th>
+              <th class="card-header" id="card3Header"></th>
+            </tr>
+          </thead>
+          <tbody id="comparisonTableBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommendations Section -->
+  <section id="recommendations-section" class="section">
+    <div class="recommendations-content">
+      <h2>Personalized Recommendations</h2>
+      <p>Answer a few questions to get personalized credit card recommendations</p>
+      <div class="recommendation-form">
+        <div class="form-group">
+          <label>What's your primary use for this card?</label>
+          <select id="primaryUse">
+            <option value="">Select an option</option>
+            <option value="cashback">Cashback rewards</option>
+            <option value="travel">Travel rewards</option>
+            <option value="balance">Balance transfers</option>
+            <option value="building">Building credit</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>What's your preferred annual fee range?</label>
+          <select id="feeRange">
+            <option value="">Select an option</option>
+            <option value="free">Free ($0)</option>
+            <option value="low">Low ($1-$50)</option>
+            <option value="medium">Medium ($51-$150)</option>
+            <option value="high">High ($150+)</option>
+          </select>
+        </div>
+        <button class="btn" onclick="getRecommendations()">Get My Recommendations</button>
+      </div>
+      <div id="recommendationsResult"></div>
+    </div>
+  </section>
+
+  <!-- History Section -->
+  <section id="history-section" class="section">
+    <div class="history-content">
+      <h2>Your Search History</h2>
+      <p>Keep track of your recent searches and comparisons</p>
+      <div id="historyContainer">
+        <p>No search history available yet. Start exploring cards to see your history here!</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat-item">
+      <span class="stat-number">50+</span>
+      <span class="stat-label">Credit Cards</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">5</span>
+      <span class="stat-label">Major Banks</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">100%</span>
+      <span class="stat-label">Free to Use</span>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 CardCompare — Trusted by Canadians</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
